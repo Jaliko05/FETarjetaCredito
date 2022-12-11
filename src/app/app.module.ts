@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from "@angular/common/http";
+
 import { AppComponent } from './app.component';
+import { TajetaCreditoComponent } from './components/tajeta-credito.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TajetaCreditoComponent,
+    
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

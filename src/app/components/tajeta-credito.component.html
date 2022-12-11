@@ -1,0 +1,129 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body p-3">
+          <h3 class="titulo">TARJETA CREDITO</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-boody p-3">
+          <h5 class="titulo">{{accion | uppercase}} TAJETA</h5>
+          <form (ngSubmit)="guardarTarjeta()" [formGroup]="form">
+            <div class="input-group input-goup-lg mb-3">
+              <span class="input-group-text">
+                <i
+                  class="fa-solid fa-user"
+                  [class.green-icon]="this.form.get('titulo')?.valid"
+                  [class.red-icon]="
+                    this.form.get('titulo')?.invalid &&
+                    this.form.get('titulo')?.touched
+                  "
+                ></i>
+              </span>
+              <input
+                formControlName="titulo"
+                type="text"
+                class="form-control"
+                placeholder="titular"
+              />
+            </div>
+            <div class="input-group input-goup-lg mb-3">
+              <span class="input-group-text">
+                <i
+                  class="fa-regular fa-credit-card"
+                  [class.green-icon]="this.form.get('numeroTarjeta')?.valid"
+                  [class.red-icon]="
+                    this.form.get('numeroTarjeta')?.invalid &&
+                    this.form.get('numeroTarjeta')?.touched
+                  "
+                ></i>
+              </span>
+              <input
+                formControlName="numeroTarjeta"
+                type="text"
+                class="form-control"
+                placeholder="Numero Tarjeta"
+                maxlength="16"
+              />
+            </div>
+            <div class="row">
+              <div class="col-lg-7">
+                <div class="input-group input-goup-lg mb-3">
+                  <span class="input-group-text">
+                    <i
+                      class="fa-solid fa-calendar-days"
+                      [class.green-icon]="
+                        this.form.get('fechaExpiracion')?.valid
+                      "
+                      [class.red-icon]="
+                        this.form.get('fechaExpiracion')?.invalid &&
+                        this.form.get('fechaExpiracion')?.touched
+                      "
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="fechaExpiracion"
+                    type="text"
+                    class="form-control"
+                    placeholder="MM/YY"
+                    maxlength="5"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <div class="input-group input-goup-lg mb-3">
+                  <span class="input-group-text">
+                    <i
+                      class="fa-regular fa-key"
+                      [class.green-icon]="this.form.get('cvv')?.valid"
+                      [class.red-icon]="
+                        this.form.get('cvv')?.invalid &&
+                        this.form.get('cvv')?.touched
+                      "
+                    ></i>
+                  </span>
+                  <input
+                    formControlName="cvv"
+                    type="password"
+                    class="form-control"
+                    placeholder="CVV"
+                    maxlength="3"
+                  />
+                </div>
+              </div>
+              <button [disabled]="this.form.invalid" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-database"></i> Aceptar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-boody p-3">
+          <h5 class="titulo">LISTADO TAJETAS</h5>
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let tarjeta of lisTarjetas; let i = index">
+                <td>{{ tarjeta.titulo }}</td>
+                <td>{{ tarjeta.numeroTarjeta }}</td>
+                <td>{{ tarjeta.fechaExpiracion }}</td>
+                <td>
+                  <i (click)="editarTarjeta(tarjeta)" class="far fa-regular fa-pen-to-square text-info"></i>
+                </td>
+                <td><i (click)="eliminarTarjeta(tarjeta.id)" class="far fa-solid fa-trash text-danger"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
